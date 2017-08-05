@@ -2,6 +2,8 @@ import discord
 import asyncio
 import sys
 
+from message_handler import process_message
+
 client = discord.Client()
 
 @client.event
@@ -13,17 +15,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content.startswith('!test'):
-        counter = 0
-        tmp = await client.send_message(message.channel, 'Calculating messages...')
-        async for log in client.logs_from(message.channel, limit=100):
-            if log.author == message.author:
-                counter += 1
+    print(message.author.name + ": " + message.content)
+    await process_message(message, client)
 
-        await client.edit_message(tmp, 'You have {} messages.'.format(counter))
-    elif message.content.startswith('!sleep'):
-        await asyncio.sleep(5)
-        await client.send_message(message.channel, 'Done sleeping')
 
 #first command-line argument should be the token
 client.run(sys.argv[1])
