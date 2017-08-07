@@ -9,9 +9,9 @@ def process_message(message, client):
     if message.content.startswith('!help'):
         with open('data/help.json') as json_data:
             help_data = json.load(json_data)
-            command_string = ''
+            command_string = 'List of DustBoop Commands:\n'
             for command in help_data['commands']:
-                command_string += command['name'] + ': ' + command['description'] + '\n'
+                command_string += '!' + command['name'] + ' - ' + command['description'] + '\n'
             yield from client.send_message(message.channel, command_string)
     elif message.content.startswith('!ggquiz'):
         yield from client.send_message(message.channel, 'http://kalavinka.co.uk/GUILTY/')
