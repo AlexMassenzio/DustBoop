@@ -16,7 +16,7 @@ def process_message(message, client):
                 command_string += '!' + command['name'] + ' - ' + command['description'] + '\n'
             yield from client.send_message(message.channel, command_string)
     elif message.content.startswith('!character'):
-        character_preview(message, client)
+        yield from character_preview(message, client)
     elif message.content.startswith('!ggquiz'):
         yield from client.send_message(message.channel, 'http://kalavinka.co.uk/GUILTY/')
     elif message.content.startswith('!bbquiz'):
