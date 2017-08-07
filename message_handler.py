@@ -1,6 +1,7 @@
 import discord
 import asyncio
 import subprocess
+import aiohttp
 
 @asyncio.coroutine
 def process_message(message, client):
@@ -12,6 +13,12 @@ def process_message(message, client):
         yield from client.send_message(message.channel, 'http://keeponblaz.in')
     elif message.content.startswith('!ggreplays'):
         yield from client.send_message(message.channel, 'http://keeponrock.in')
+    elif message.content.startswith('!test'):
+        url = 'http://www.dustloop.com/wiki/api.php?action=parse&format=json&page=BBCF%2FHibiki_Kohaku&prop=displaytitle'
+        response = yield from aiohttp.request('get', url)
+        string = (yield from response.read()).decode('utf-8')
+        data = json.loads(string)
+        yield from client.send_message(message.channel, data)
     elif message.content.startswith('!restart'):
         subprocess.call(['shutdown', '-r', 'now'])
         yield from client.logout()
