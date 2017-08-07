@@ -21,7 +21,8 @@ def process_message(message, client):
         string = (yield from response.read()).decode('utf-8')
         yield from client.send_message(message.channel, string)
         data = json.loads(string)
-        yield from client.send_message(message.channel, data)
+        answer = data['parse']['displaytitle']
+        yield from client.send_message(message.channel, answer)
         yield from client.send_message(message.channel, 'made it!')
     elif message.content.startswith('!restart'):
         yield from client.send_message(message.channel, 'Restarting...')
