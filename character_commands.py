@@ -28,5 +28,6 @@ def character_preview(message, client):
 					if 'Portrait' in image['title']:
 						yield from client.send_message(message.channel, image['title'])
 						portrait_data = yield from json_from_url('http://dustloop.com/wiki/api.php?action=query&format=json&prop=imageinfo&titles=File:BBCP%20Hibiki%20Portrait.png&iiprop=url')
-						portrait_info = list(portrait_data['query']['pages'].keys())[0]['imageinfo']
+						portrait_id = str(list(portrait_data['query']['pages'].keys())[0])
+						portrait_info = portrait_data['query']['pages'][portrait_id]['imageinfo']
 						yield from client.send_message(message.channel, portrait_info['url'])
