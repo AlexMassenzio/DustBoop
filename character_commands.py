@@ -20,7 +20,7 @@ def character_preview(message, client):
 
 		for character in character_data['characters']:
 			if character_name == character['name']:
-				data = json_from_url('http://www.dustloop.com/wiki/api.php?action=query&format=json&prop=images&titles=' + character['title'] + '&imlimit=50')
+				data = yield from json_from_url('http://www.dustloop.com/wiki/api.php?action=query&format=json&prop=images&titles=' + character['title'] + '&imlimit=50')
 				page_id = str(list(data['query']['pages'].keys())[0])
 				image_data = data['query']['pages'][page_id]['images']
 
