@@ -13,5 +13,5 @@ def process_message(message, client):
     elif message.content.startswith('!ggreplays'):
         yield from client.send_message(message.channel, 'http://keeponrock.in')
     elif message.content.startswith('!restart'):
-        subprocess.call('sudo', 'shutdown', '-r', 'now')
+        subprocess.call(['shutdown', '-r', 'now'])
         yield from client.logout()
