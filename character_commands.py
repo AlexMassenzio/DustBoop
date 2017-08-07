@@ -26,6 +26,7 @@ def character_preview(message, client):
 
 				for image in image_data:
 					if 'Portrait' in image['title']:
+						yield from client.send_message(message.channel, image['title'])
 						portrait_data = yield from json_from_url('http://www.dustloop.com/wiki/api.php?action=query&format=json&prop=imageinfo&titles=' + image['title'] + '&iiprop=url')
 						portrait_info = list(portrait_data['query']['pages'].keys())[0]['imageinfo']
 						yield from client.send_message(message.channel, portrait_info['url'])
