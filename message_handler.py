@@ -17,6 +17,7 @@ def process_message(message, client):
         yield from client.send_message(message.channel, 'here we go...')
         url = 'http://www.dustloop.com/wiki/api.php?action=parse&format=json&page=BBCF%2FHibiki_Kohaku&prop=displaytitle'
         response = yield from aiohttp.request('get', url)
+        yield from client.send_message(message.channel, response)
         string = (yield from response.read()).decode('utf-8')
         data = json.loads(string)
         yield from client.send_message(message.channel, data)
