@@ -8,7 +8,7 @@ from json_utilities import json_from_url
 
 @asyncio.coroutine
 def character_preview(message, client):
-	
+
 	with open('data/characters.json') as json_data:
 		if len(message.content.split()) < 2:
 			yield from client.send_message(message.channel, "Please inclue a character name")
@@ -25,7 +25,7 @@ def character_preview(message, client):
 
 				for image in image_data:
 					if 'Portrait' in image['title']:
-						portrait_data = yield from json_from_url('http://dustloop.com/wiki/api.php?action=query&format=json&prop=imageinfo&titles=File:BBCP%20Hibiki%20Portrait.png&iiprop=url')
+						portrait_data = yield from json_from_url('http://dustloop.com/wiki/api.php?action=query&format=json&prop=imageinfo&titles=' + image['title'] + '&iiprop=url')
 						portrait_id = str(list(portrait_data['query']['pages'].keys())[0])
 						portrait_info = portrait_data['query']['pages'][portrait_id]['imageinfo']
 						yield from client.send_message(message.channel, portrait_info[0]['url'])
