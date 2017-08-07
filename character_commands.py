@@ -8,8 +8,7 @@ from json_utilities import json_from_url
 
 @asyncio.coroutine
 def character_preview(message, client):
-	yield from client.send_message(message.channel, "Looking up character")
-
+	
 	with open('data/characters.json') as json_data:
 		if len(message.content.split()) < 2:
 			yield from client.send_message(message.channel, "Please inclue a character name")
