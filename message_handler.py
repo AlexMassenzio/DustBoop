@@ -4,6 +4,8 @@ import subprocess
 import aiohttp
 import json
 
+from character_commands import character_preview
+
 @asyncio.coroutine
 def process_message(message, client):
     if message.content.startswith('!help'):
@@ -13,6 +15,8 @@ def process_message(message, client):
             for command in help_data['commands']:
                 command_string += '!' + command['name'] + ' - ' + command['description'] + '\n'
             yield from client.send_message(message.channel, command_string)
+    elif message.content.startswith('!character'):
+        character_preview(message, client)
     elif message.content.startswith('!ggquiz'):
         yield from client.send_message(message.channel, 'http://kalavinka.co.uk/GUILTY/')
     elif message.content.startswith('!bbquiz'):
