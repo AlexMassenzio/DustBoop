@@ -11,7 +11,7 @@ def process_message(message, client):
             help_data = json.load(json_data)
             for command in help_data['commands']:
                 #command_string += command['name'] + ': ' + command['description'] + '\n'
-                yield from client.send_message(message.channel, command['name'])
+                yield from client.send_message(message.channel, command['name'] + command['description'])
     elif message.content.startswith('!ggquiz'):
         yield from client.send_message(message.channel, 'http://kalavinka.co.uk/GUILTY/')
     elif message.content.startswith('!bbquiz'):
