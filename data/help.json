@@ -1,0 +1,22 @@
+[
+  {
+    "name": "bbquiz",
+    "description": "BlazBlue character helper",
+    "parameters": []
+  },
+  {
+    "name": "ggquiz",
+    "description": "Guilty Gear character helper",
+    "parameters": []
+  },
+  {
+    "name": "bbreplays",
+    "description": "BlazBlue matchup database",
+    "parameters": []
+  },
+  {
+    "name": "ggreplays",
+    "description": "Guilty Gear matchup database",
+    "parameters": []
+  }
+]
