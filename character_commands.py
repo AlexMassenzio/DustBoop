@@ -4,6 +4,8 @@ import subprocess
 import aiohttp
 import json
 
+from json_utilities import json_from_url
+
 @asyncio.coroutine
 def character_preview(message, client):
 	yield from client.send_message(message.channel, "Looking up character")
@@ -20,12 +22,12 @@ def character_preview(message, client):
 			if character_name == character['name']:
 				url = 'http://www.dustloop.com/wiki/api.php?action=query&format=json&prop=images&titles=' + character['title'] + '&imlimit=50'
 			
-			response = yield from aiohttp.request('get', url)
-			string = (yield from response.read()).decode('utf-8')
-			data = json.loads(string)
-			page_id = str(list(data['query']['pages'].keys())[0])
-			image_data = data['query']['pages'][page_id]['images']
+				response = yield from aiohttp.request('get', url)
+				string = (yield from response.read()).decode('utf-8')
+				data = json.loads(string)
+				page_id = str(list(data['query']['pages'].keys())[0])
+				image_data = data['query']['pages'][page_id]['images']
 
-			for image in image_data:
-				if 'Portrait' in image['title']:
-					yield from client.send_message(message.channel, image['title'])
+				for image in image_data:
+					if 'Portrait' in image['title']:
+						yield from client.send_message(message.channel, image['title'])
