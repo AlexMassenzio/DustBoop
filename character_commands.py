@@ -17,9 +17,9 @@ def character_preview(message, client):
 		for character in character_data['characters']:
 			if character_name == character['name']:
 				url = 'http://www.dustloop.com/wiki/api.php?action=query&format=json&prop=images&titles=' + character['title'] + '&imlimit=50'
-        		response = yield from aiohttp.request('get', url)
-        		string = (yield from response.read()).decode('utf-8')
-        		data = json.loads(string)
-        		answer = data['query']['normalized']
-        		yield from client.send_message(message.channel, answer)
+			response = yield from aiohttp.request('get', url)
+			string = (yield from response.read()).decode('utf-8')
+			data = json.loads(string)
+			answer = data['query']['normalized']
+			yield from client.send_message(message.channel, answer)
 
