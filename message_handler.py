@@ -15,7 +15,6 @@ def process_message(message, client):
     elif message.content.startswith('!ggreplays'):
         yield from client.send_message(message.channel, 'http://keeponrock.in')
     elif message.content.startswith('!test'):
-        yield from client.send_message(message.channel, 'here we go...')
         url = 'http://www.dustloop.com/wiki/api.php?action=parse&format=json&page=BBCF%2FHibiki_Kohaku&prop=displaytitle'
         response = yield from aiohttp.request('get', url)
         string = (yield from response.read()).decode('utf-8')
