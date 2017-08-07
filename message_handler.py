@@ -19,6 +19,7 @@ def process_message(message, client):
         response = yield from aiohttp.request('get', url)
         yield from client.send_message(message.channel, response)
         string = (yield from response.read()).decode('utf-8')
+        yield from client.send_message(message.channel, string)
         data = json.loads(string)
         yield from client.send_message(message.channel, data)
         yield from client.send_message(message.channel, 'made it!')
