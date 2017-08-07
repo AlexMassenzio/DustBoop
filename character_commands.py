@@ -23,9 +23,9 @@ def character_preview(message, client):
 			response = yield from aiohttp.request('get', url)
 			string = (yield from response.read()).decode('utf-8')
 			data = json.loads(string)
-			page_id = str(data['query']['pages'].keys()[0])
+			page_id = str(list(data['query']['pages'].keys())[0])
 			image_data = data['query']['pages'][page_id]['images']
 
-			for image in image_data
+			for image in image_data:
 				if 'Portrait' in image['title']:
 					yield from client.send_message(message.channel, image['title'])
