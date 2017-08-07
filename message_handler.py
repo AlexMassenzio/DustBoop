@@ -20,7 +20,7 @@ def process_message(message, client):
         string = (yield from response.read()).decode('utf-8')
         data = json.loads(string)
         answer = data['parse']['displaytitle']
-        yield from client.send_message(message.channel, answer)
+        yield from client.send_message(message.channel, answer + '\nhttp://www.dustloop.com/wiki/images/8/8d/BBCF_Hibiki_2A.png')
     elif message.content.startswith('!restart'):
         yield from client.send_message(message.channel, 'Restarting...')
         subprocess.call(['shutdown', '-r', 'now'])
