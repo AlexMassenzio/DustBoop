@@ -26,10 +26,7 @@ def character_preview(message, client):
 
 				for image in image_data:
 					if 'Portrait' in image['title']:
-						portrait_name = image['title']
-						portrait_name = portrait_name.replace(' ', '+')
-						portrait_name = portrait_name.replace(':', '%3A')
 						yield from client.send_message(message.channel, image['title'])
-						portrait_data = yield from json_from_url('http://www.dustloop.com/wiki/api.php?action=query&format=json&prop=imageinfo&titles=' + image['title'] + '&iiprop=url')
+						portrait_data = yield from json_from_url('http://dustloop.com/wiki/api.php?action=query&format=json&prop=imageinfo&titles=File:BBCP%20Hibiki%20Portrait.png&iiprop=url')
 						portrait_info = list(portrait_data['query']['pages'].keys())[0]['imageinfo']
 						yield from client.send_message(message.channel, portrait_info['url'])
