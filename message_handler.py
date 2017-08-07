@@ -1,5 +1,6 @@
 import discord
 import asyncio
+import subprocess
 
 @asyncio.coroutine
 def process_message(message, client):
@@ -11,5 +12,6 @@ def process_message(message, client):
         yield from client.send_message(message.channel, 'http://keeponblaz.in')
     elif message.content.startswith('!ggreplays'):
         yield from client.send_message(message.channel, 'http://keeponrock.in')
-    elif message.content.startswith('!shutdown'):
+    elif message.content.startswith('!restart'):
+        subprocess.call('sudo', 'shutdown', '-r', 'now')
         yield from client.logout()
