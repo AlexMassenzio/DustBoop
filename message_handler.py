@@ -9,7 +9,7 @@ def process_message(message, client):
     if message.content.startswith('!help'):
         with open('data/help.json') as json_data:
             d = json.load(json_data)
-            print(d)
+            yield from client.send_message(message.channel, json.dumps(d))
     elif message.content.startswith('!ggquiz'):
         yield from client.send_message(message.channel, 'http://kalavinka.co.uk/GUILTY/')
     elif message.content.startswith('!bbquiz'):
