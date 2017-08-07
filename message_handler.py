@@ -2,6 +2,7 @@ import discord
 import asyncio
 import subprocess
 import aiohttp
+import json
 
 @asyncio.coroutine
 def process_message(message, client):
@@ -17,7 +18,6 @@ def process_message(message, client):
         yield from client.send_message(message.channel, 'here we go...')
         url = 'http://www.dustloop.com/wiki/api.php?action=parse&format=json&page=BBCF%2FHibiki_Kohaku&prop=displaytitle'
         response = yield from aiohttp.request('get', url)
-        yield from client.send_message(message.channel, response)
         string = (yield from response.read()).decode('utf-8')
         yield from client.send_message(message.channel, string)
         data = json.loads(string)
