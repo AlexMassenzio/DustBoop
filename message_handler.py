@@ -19,11 +19,9 @@ def process_message(message, client):
         url = 'http://www.dustloop.com/wiki/api.php?action=parse&format=json&page=BBCF%2FHibiki_Kohaku&prop=displaytitle'
         response = yield from aiohttp.request('get', url)
         string = (yield from response.read()).decode('utf-8')
-        yield from client.send_message(message.channel, string)
         data = json.loads(string)
         answer = data['parse']['displaytitle']
         yield from client.send_message(message.channel, answer)
-        yield from client.send_message(message.channel, 'made it!')
     elif message.content.startswith('!restart'):
         yield from client.send_message(message.channel, 'Restarting...')
         subprocess.call(['shutdown', '-r', 'now'])
