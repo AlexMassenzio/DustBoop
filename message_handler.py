@@ -15,6 +15,8 @@ def process_message(message, client):
             for command in help_data['commands']:
                 command_string += '!' + command['name'] + ' - ' + command['description'] + '\n'
             yield from client.send_message(message.channel, command_string)
+    elif message.content.startswith('!dev'):
+        yield from client.send_message(message.channel, 'Want to contribute? Check out the github page: https://github.com/AlexMassenzio/DustBoop/')
     elif message.content.startswith('!character'):
         yield from character_preview(message, client)
     elif message.content.startswith('!ggquiz'):

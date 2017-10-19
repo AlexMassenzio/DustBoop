@@ -1,13 +1,6 @@
 {
   "commands": [
     {
-      "name": "character",
-      "description": "Displays information about the character.",
-      "parameters": [
-        "The name of the character"
-      ]
-    },
-    {
       "name": "ggquiz",
       "description": "Guilty Gear character helper",
       "parameters": []
