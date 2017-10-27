@@ -5,6 +5,7 @@ import aiohttp
 import json
 
 from character_commands import character_preview
+from twitch_commands import get_stream
 
 @asyncio.coroutine
 def process_message(message, client):
@@ -19,6 +20,8 @@ def process_message(message, client):
         yield from client.send_message(message.channel, 'Want to contribute? Check out the github page: https://github.com/AlexMassenzio/DustBoop/')
     elif message.content.startswith('!character'):
         yield from character_preview(message, client)
+    elif message.content.startswith('!stream'):
+        yield from get_stream(message, client)
     elif message.content.startswith('!ggquiz'):
         yield from client.send_message(message.channel, 'http://kalavinka.co.uk/GUILTY/')
     elif message.content.startswith('!bbquiz'):
