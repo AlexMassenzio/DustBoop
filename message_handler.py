@@ -38,7 +38,7 @@ def process_message(message, client):
         answer = data['parse']['displaytitle']
         yield from client.send_message(message.channel, answer + '\nhttp://www.dustloop.com/wiki/images/8/8d/BBCF_Hibiki_2A.png')
     elif '@everyone' in message.content and message.server.name == '(C2GS) Computer & Console Gaming Society':
-        yield from client.send_message(message.channel, 'Please use everyone mentions sparingly!')
+        yield from client.send_message(message.channel, 'Please use everyone mentions sparingly.')
     elif message.content.startswith('!restart'):
         yield from client.send_message(message.channel, 'Restarting...')
         subprocess.call(['shutdown', '-r', 'now'])
