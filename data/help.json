@@ -19,6 +19,11 @@
       "name": "bbreplays",
       "description": "BlazBlue matchup database",
       "parameters": []
+    },
+    {
+      "name": "stream",
+      "description": "test for now",
+      "parameters": []
     }
   ]
 }
